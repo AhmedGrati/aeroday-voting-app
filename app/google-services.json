@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "26224532822",
+    "firebase_url": "https://aerodayproject.firebaseio.com",
+    "project_id": "aerodayproject",
+    "storage_bucket": "aerodayproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26224532822:android:29d5d1472ab96efbfd0af7",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26224532822-gorli8lpvbsjisc49crps61nlq52naen.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5OLVAa0xVSulzXBmb0nFVmM6tYfZ0ftM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26224532822-gorli8lpvbsjisc49crps61nlq52naen.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
