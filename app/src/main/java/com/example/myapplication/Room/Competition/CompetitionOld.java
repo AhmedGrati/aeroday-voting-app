@@ -5,8 +5,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
+
+
 @Entity(tableName = "competition_table")
-public class Competition {
+public class CompetitionOld {
 
     @PrimaryKey
     @NonNull
@@ -25,7 +28,7 @@ public class Competition {
     @ColumnInfo(name="time")
     private String time;
 
-    public Competition(int id, boolean isActive, String name, String place, String time) {
+    public CompetitionOld(int id, boolean isActive, String name, String place, String time) {
         this.id = id;
         this.isActive = isActive;
         this.name = name;

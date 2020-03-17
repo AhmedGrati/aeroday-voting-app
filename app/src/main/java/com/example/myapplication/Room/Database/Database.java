@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.myapplication.Room.Competition.Competition;
 import com.example.myapplication.Room.Dao.CompetitionDao;
 
-@androidx.room.Database(entities = Competition.class , version = 1 ,exportSchema = false)
+@androidx.room.Database(entities = Competition.class , version = 2 ,exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
     private static Database insatance;
@@ -40,9 +40,9 @@ public abstract class Database extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            competitionDao.insertCompetition(new Competition(1,false,"Competition 1","Tunis","00:00"));
-            competitionDao.insertCompetition(new Competition(2,false,"Competition 2","Tunis","00:00"));
-            competitionDao.insertCompetition(new Competition(3,false,"Competition 3","Tunis","00:00"));
+            competitionDao.insertCompetition(new Competition(false,"Competition 1","Tunis","00:00" , 0));
+            competitionDao.insertCompetition(new Competition(false,"Competition 2","Tunis","00:00" ,1));
+            competitionDao.insertCompetition(new Competition(false,"Competition 3","Tunis","00:00" , 2));
             return null;
         }
     }
