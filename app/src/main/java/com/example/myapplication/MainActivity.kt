@@ -1,13 +1,18 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.Room.Competition.Competition
 import com.example.myapplication.Room.Database.Database
 import com.example.myapplication.Room.Repository.CompetitionRepository
+import com.example.myapplication.Room.ViewModel.CompetitionViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -17,7 +22,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 import com.google.firebase.ktx.Firebase
+import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.Schedulers.io
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import java.time.Duration
@@ -26,9 +34,11 @@ import java.time.LocalDateTime
 
 
 class MainActivity : AppCompatActivity() {
-    val disposable = CompositeDisposable()
-
+    //val disposable = CompositeDisposable()
+    lateinit var competitionViewModel: CompetitionViewModel
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -37,10 +47,14 @@ class MainActivity : AppCompatActivity() {
         val differenceBetweenTwoDays = Duration.between(date,aerodayDate).toDays()
         countDown_text.text = "J-$differenceBetweenTwoDays. Stay Tuned !"
 
+        competitionViewModel = ViewModelProvider(this).get(CompetitionViewModel::class.java)
+        competitionViewModel.all.subscribe {
+            println(" mydatais : $it")
+        }
 
         //data here
 
-        val repo = CompetitionRepository(
+        /*val repo = CompetitionRepository(
             Database.getInstance(
                 application).competitionDao()
             , FirebaseFirestore.getInstance()
@@ -48,9 +62,9 @@ class MainActivity : AppCompatActivity() {
 
         disposable.add(
             repo.getAll().subscribe {
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "geeeeee", Toast.LENGTH_SHORT).show()
             }
-        )
+        )*/
 
 
 
@@ -93,8 +107,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
+    /*override fun onDestroy() {
         super.onDestroy()
         disposable.clear()
-    }
+    }*/
 }

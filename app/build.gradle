@@ -10,7 +10,7 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         multiDexEnabled true
         applicationId "com.example.myapplication"
@@ -71,5 +71,8 @@ dependencies {
 
     // Testing
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    implementation "androidx.activity:activity-ktx:1.1.0"
+
 
 }

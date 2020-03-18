@@ -27,7 +27,10 @@ class CompetitionRepository(private val dao: CompetitionDao , private val db : F
                         .orderBy("name")
                         .get().addOnCompleteListener {
                             val cloudData = it.result!!
-                                .documents.map { documentSnapshot -> documentSnapshot.toObject<Competition>()!!
+                                .documents.map { documentSnapshot ->
+                                val d = documentSnapshot.toObject<Competition>()!!
+                                d.id = documentSnapshot.id.toInt()
+                                return@map d
                             }
 
                             Log.i("firelog" , cloudData.toString())
