@@ -19,7 +19,7 @@ public class CompetitionViewModel extends AndroidViewModel {
 
     private CompetitionRepository competitionRepository;
     private Flowable<List<Competition>> allCompetitions;
-    CompetitionViewModel(@NonNull Application application){
+    public CompetitionViewModel(@NonNull Application application){
         super(application);
         competitionRepository = new CompetitionRepository(Database.getInstance(application).competitionDao(), FirebaseFirestore.getInstance());
         allCompetitions = competitionRepository.getAll();

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -47,9 +48,10 @@ class MainActivity : AppCompatActivity() {
         val differenceBetweenTwoDays = Duration.between(date,aerodayDate).toDays()
         countDown_text.text = "J-$differenceBetweenTwoDays. Stay Tuned !"
 
-        competitionViewModel = ViewModelProvider(this).get(CompetitionViewModel::class.java)
+        val competitionViewModel : CompetitionViewModel by viewModels()
+
         competitionViewModel.all.subscribe {
-            println(" mydatais : $it")
+            Log.i("www" , it.toString())
         }
 
         //data here
