@@ -12,4 +12,4 @@ data class Competition(
         , var time: String = ""
         , @PrimaryKey
         var id: Int = -1
-) 
+)
