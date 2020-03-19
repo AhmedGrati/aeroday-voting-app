@@ -46,7 +46,9 @@
             android:textColor="@android:color/white">
         </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-<ScrollView
+
+
+    <ScrollView
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:background="@drawable/gradient_background"

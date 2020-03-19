@@ -1,15 +1,11 @@
 package com.example.myapplication.RecyclerViews
 
 import android.graphics.Color
-import android.text.style.BackgroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.Room.Model.Competition
@@ -33,10 +29,10 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionHo
         holder.textViewName.text = currentCompetition.name
         holder.textViewTime.text = "Time : "+currentCompetition.time
         holder.textViewPlace.text = "Place : "+currentCompetition.place
-        if(currentCompetition.isActive == true){
+        if (currentCompetition.active == true) {
             holder.textViewResponseIsActive.text = "On"
             holder.textViewResponseIsActive.setTextColor(Color.GREEN)
-        }else{
+        } else {
             holder.textViewResponseIsActive.text = "Off"
             holder.textViewResponseIsActive.setTextColor(Color.RED)
         }
