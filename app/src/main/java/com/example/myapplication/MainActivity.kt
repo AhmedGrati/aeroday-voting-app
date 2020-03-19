@@ -1,34 +1,18 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.widget.ScrollView
 import androidx.activity.viewModels
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.Room.Competition.Competition
-import com.example.myapplication.Room.Database.Database
-import com.example.myapplication.Room.Repository.CompetitionRepository
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.RecyclerViews.CompetitionAdapter
+import com.example.myapplication.Room.Model.Competition
 import com.example.myapplication.Room.ViewModel.CompetitionViewModel
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 
-import com.google.firebase.ktx.Firebase
-import io.reactivex.Scheduler
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.schedulers.Schedulers.io
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
 import java.time.Duration
 import java.time.LocalDateTime
 
@@ -48,10 +32,24 @@ class MainActivity : AppCompatActivity() {
         val differenceBetweenTwoDays = Duration.between(date,aerodayDate).toDays()
         countDown_text.text = "J-$differenceBetweenTwoDays. Stay Tuned !"
 
+        //recyclerview settings
+        challenges_recycler_view.layoutManager = LinearLayoutManager(this)
+        challenges_recycler_view.setHasFixedSize(true)
+
+        val competitionAdapter : CompetitionAdapter = CompetitionAdapter()
+        challenges_recycler_view.adapter = competitionAdapter
+
+
+
+
+
         val competitionViewModel : CompetitionViewModel by viewModels()
 
         competitionViewModel.all.subscribe {
-            Log.i("www" , it.toString())
+            competitions ->
+
+                competitionAdapter.setCompetitions(competitions as ArrayList<Competition>)
+            Log.d("mymessage : ","${competitionAdapter.getCompetitions()}")
         }
 
         //data here

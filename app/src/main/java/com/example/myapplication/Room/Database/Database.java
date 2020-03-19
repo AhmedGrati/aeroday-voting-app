@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.myapplication.Room.Competition.Competition;
+import com.example.myapplication.Room.Model.Competition;
 import com.example.myapplication.Room.Dao.CompetitionDao;
 
 @androidx.room.Database(entities = Competition.class , version = 2 ,exportSchema = false)

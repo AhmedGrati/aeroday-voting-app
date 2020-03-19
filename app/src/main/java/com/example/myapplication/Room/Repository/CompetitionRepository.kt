@@ -1,10 +1,9 @@
 package com.example.myapplication.Room.Repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.myapplication.Room.Dao.CompetitionDao
 import com.google.firebase.firestore.FirebaseFirestore
-import com.example.myapplication.Room.Competition.Competition
+import com.example.myapplication.Room.Model.Competition
 import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,7 +32,7 @@ class CompetitionRepository(private val dao: CompetitionDao , private val db : F
                                 return@map d
                             }
 
-                            Log.i("firelog" , cloudData.toString())
+                            Log.i("firelogCloudData" , cloudData.toString())
 
 
 

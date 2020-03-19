@@ -1,10 +1,9 @@
 package com.example.myapplication.Room.Dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.myapplication.Room.Competition.Competition
+import com.example.myapplication.Room.Model.Competition
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
