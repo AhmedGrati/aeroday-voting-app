@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RecyclerViews.CompetitionAdapter
+import com.example.myapplication.RecyclerViews.CompetitionAdapter.OnCompetitionListener
 import com.example.myapplication.Room.Model.Competition
 import com.example.myapplication.Room.ViewModel.CompetitionViewModel
 
@@ -18,7 +21,7 @@ import java.time.LocalDateTime
 
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
     //val disposable = CompositeDisposable()
     lateinit var competitionViewModel: CompetitionViewModel
     @SuppressLint("CheckResult")
@@ -36,12 +39,8 @@ class MainActivity : AppCompatActivity() {
         challenges_recycler_view.layoutManager = LinearLayoutManager(this)
         challenges_recycler_view.setHasFixedSize(true)
 
-        val competitionAdapter : CompetitionAdapter = CompetitionAdapter()
+        val competitionAdapter : CompetitionAdapter = CompetitionAdapter(this)
         challenges_recycler_view.adapter = competitionAdapter
-
-
-
-
 
         val competitionViewModel : CompetitionViewModel by viewModels()
 
@@ -52,63 +51,17 @@ class MainActivity : AppCompatActivity() {
             Log.d("mymessage : ","${competitionAdapter.getCompetitions()}")
         }
 
-        //data here
-
-        /*val repo = CompetitionRepository(
-            Database.getInstance(
-                application).competitionDao()
-            , FirebaseFirestore.getInstance()
-        )
-
-        disposable.add(
-            repo.getAll().subscribe {
-                Toast.makeText(this, "geeeeee", Toast.LENGTH_SHORT).show()
-            }
-        )*/
-
-
-
-       /*var reference = FirebaseDatabase.getInstance().getReference().child("Competition").child("0")
-
-        reference.addValueEventListener(
-            object : ValueEventListener {
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    println("hello snapshot $p0")
-                }
-
-                override fun onCancelled(p0: DatabaseError) {
-                    println("bye $p0")
-                }
-            }
-
-        )*/
-
-
-        //Redirection TO Voting Activity
-        /*voting_button.setOnClickListener {
-            intent = Intent(this,VotingActivity::class.java);
-            startActivity(intent);
-        }
-
-        //Redirection TO AerodayProgram Activity
-        program_aeroday_button.setOnClickListener {
-            intent = Intent(this,VotingActivity::class.java);
-            startActivity(intent);
-        }
-
-        //Redirection TO AirshowProgram Activity
-        program_airshow_button.setOnClickListener {
-            intent = Intent(this,VotingActivity::class.java);
-            startActivity(intent);
-        }*/
-
-
-
     }
 
-    /*override fun onDestroy() {
-        super.onDestroy()
-        disposable.clear()
-    }*/
+    override fun onCompetitionClick(position: Int) {
+        val allCompetitions : ArrayList<Competition> = CompetitionAdapter.competitions
+        var competition = allCompetitions.get(position)
+        Log.d("thecompetitionis : ", "$competition")
+        if ((competition.name.toUpperCase().trim() == "AIRSHOW") && (competition.active==true)) {
+            var intent = Intent(this, VotingActivity::class.java)
+            startActivity(intent)
+
+        }
+    }
+
 }

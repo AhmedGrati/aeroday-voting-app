@@ -27,7 +27,9 @@ class CompetitionRepository(private val dao: CompetitionDao , private val db : F
                         .get().addOnCompleteListener {
                             val cloudData = it.result!!
                                 .documents.map { documentSnapshot ->
+
                                 val d = documentSnapshot.toObject<Competition>()!!
+                                Log.d("snapppp","$d")
                                 d.id = documentSnapshot.id.toInt()
                                 return@map d
                             }

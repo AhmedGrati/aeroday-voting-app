@@ -6,17 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".VotingActivity">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_voting"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Back To Main"
-        android:textAllCaps="false"
-        android:textSize="25sp"
-        android:id="@+id/back_to_main_button"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/content_voting"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/voting_header_background"
+            android:scaleType="centerCrop"/>
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:src="@drawable/aeroday_logo_2"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/airshow_voting_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Airshow Voting"
+            android:textColor="@android:color/white"
+            android:textSize="50sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_voting"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_voting">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/voting_recycler_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/gradient_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/voting_item"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

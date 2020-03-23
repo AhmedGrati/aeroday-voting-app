@@ -47,22 +47,17 @@
         </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:background="@drawable/gradient_background"
-    app:layout_constraintTop_toBottomOf="@id/header_id"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    >
     <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@id/header_id"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/gradient_background"
         android:id="@+id/challenges_recycler_view"
         tools:listitem="@layout/card_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-</ScrollView>
+
 
         <!--<androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
