@@ -3,7 +3,6 @@ package com.example.myapplication.Room.Repository
 import android.util.Log
 import com.example.myapplication.Room.Dao.AirshowParticipantDao
 import com.example.myapplication.Room.Model.AirshowParticipant
-
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.Flowable
@@ -26,18 +25,19 @@ class AirshowParticipantRepository(private val airshowParticipantDao: AirshowPar
                                 .orderBy("name")
                                 .get().addOnCompleteListener {
                                     val cloudData = it.result!!
-                                            .documents.map {documentSnapshot ->
+                                            .documents.map { documentSnapshot ->
+                                        Log.i("ddebug", documentSnapshot.data.toString())
+
 
                                         val d = documentSnapshot.toObject<AirshowParticipant>()!!
-                                        Log.d("snapppp","$d")
-                                        d.id = documentSnapshot.id.toInt()
+
+                                        Log.i("wadhah", d.toString())
+                                        //    d.id = documentSnapshot.id.toInt()
                                         return@map d
 
                                     }
 
                                     Log.i("firelogCloudData" , cloudData.toString())
-
-
 
                                     Log.i("firelog" , localData.toString())
 
