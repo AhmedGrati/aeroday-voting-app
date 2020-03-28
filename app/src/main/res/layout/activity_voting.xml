@@ -79,7 +79,6 @@
                 android:textSize="30sp"
                 android:textAllCaps="false"
                 android:alpha="0.45"
-                android:drawableLeft="@drawable/ic_decline_icon"
                 android:layout_weight="1"
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/montserrat"
@@ -97,7 +96,6 @@
                 android:fontFamily="@font/montserrat"
                 android:textSize="30sp"
                 android:alpha="0.45"
-                android:drawableRight="@drawable/ic_icon_check"
                 android:textColor="@android:color/white"
                 android:background="@color/confirm_button_color">
             </Button>

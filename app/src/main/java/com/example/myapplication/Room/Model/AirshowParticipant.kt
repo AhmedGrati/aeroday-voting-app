@@ -1,7 +1,6 @@
 package com.example.myapplication.Room.Model
 
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "airshow_participant_table")
@@ -13,6 +12,7 @@ data class AirshowParticipant(
         var name : String = "",
         var score : Int = 0,
         var votes : String = "0",
+
         var voters : ArrayList<Voter> = ArrayList<Voter>()
 ){
         override fun toString() : String{

@@ -13,9 +13,12 @@ import com.example.myapplication.Room.Model.Voter;
 import com.example.myapplication.Room.Repository.VoterRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
 
 public class VoterViewModel extends AndroidViewModel {
     private VoterRepository voterRepository;
@@ -24,7 +27,7 @@ public class VoterViewModel extends AndroidViewModel {
         this.voterRepository = new VoterRepository(Database.getInstance(application).voterDao());
     }
 
-    public Flowable<Voter> findVoterById(String id){
+    public Flowable<Optional<Voter>> findVoterById(String id){
         return this.voterRepository.findUserById(id);
     }
 

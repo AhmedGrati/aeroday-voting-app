@@ -2,16 +2,15 @@ package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.widget.ScrollView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RecyclerViews.CompetitionAdapter
 import com.example.myapplication.RecyclerViews.CompetitionAdapter.OnCompetitionListener
 import com.example.myapplication.Room.Model.AirshowParticipant
@@ -19,16 +18,12 @@ import com.example.myapplication.Room.Model.Competition
 import com.example.myapplication.Room.ViewModel.AirshowParticipantViewModel
 import com.example.myapplication.Room.ViewModel.CompetitionViewModel
 import com.example.myapplication.Room.ViewModel.VoterViewModel
-
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.Duration
 import java.time.LocalDateTime
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
-    //val disposable = CompositeDisposable()
     lateinit var competitionViewModel: CompetitionViewModel
     var allParticipants=ArrayList<AirshowParticipant>()
     val voterViewModel : VoterViewModel by viewModels()
@@ -62,41 +57,48 @@ class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
 
         airshowParticipantViewModel.all.subscribe { airshowParticipants ->
             this.allParticipants = airshowParticipants as ArrayList<AirshowParticipant>
-            Log.d("allparticipants" ,"${this.allParticipants}")
-        }
-        for(i in 0..this.allParticipants.size-1){
-            this.voterViewModel.insertAllVoters((this.allParticipants.get(i).voters)).subscribe {
-                Log.d("insertedVoter","insertedVoter")
+            Log.d("allParticipants : ","$allParticipants")
+            this.allParticipants.forEach {
+                this.voterViewModel.insertAllVoters((it.voters)).subscribe {
+                    Log.d("insertedVoter", "insertedVoter")
+                }
             }
         }
-        voterViewModel.allVoters.subscribe {
-            voters ->
-                Log.d("allVoters : ","$voters")
+        voterViewModel.allVoters.subscribe { voters ->
+            Log.d("allVoters : ", "$voters")
         }
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("CheckResult")
-    override fun onCompetitionClick(position: Int) {
+    override fun onCompetitionClick(position: Int) : Unit{
+        var exitfunction=false;
         val allCompetitions : ArrayList<Competition> = CompetitionAdapter.competitions
         var competition = allCompetitions.get(position)
         Log.d("thecompetitionis : ", "$competition")
         if ((competition.name.toUpperCase().trim() == "AIRSHOW") && (competition.active==true)) {
             var uniqueId : String = Settings.Secure.getString(this.contentResolver , Settings.Secure.ANDROID_ID)
             Log.d("hani hna","hani hna")
-            this.voterViewModel.findVoterById(uniqueId).subscribe {
+            this.voterViewModel.findVoterById(uniqueId.toString()).subscribe {
                 voter ->
-                    println("${voter.id}")
-                    /*Log.d("voterahmedgrati","$voter")
-                    if(voter != null){
-                        Toast.makeText(this,"You already Voted Sorry !!" , Toast.LENGTH_SHORT).show()
+                    Log.d("voterexists","${voter.isPresent}")
+                    exitfunction = voter.isPresent
+                    if(!exitfunction){
+                        openIntent()
+                        Log.d("voterexists","${voter.isPresent}")
                     }else{
-                        var intent = Intent(this, VotingActivity::class.java)
-                        startActivity(intent)
-                    }*/
+                        Toast.makeText(this,"You already Voted Sorry !!" , Toast.LENGTH_SHORT).show()
+
+                    }
             }
 
         }
+    }
+    fun openIntent(){
+        var intent = Intent(this, VotingActivity::class.java)
+        startActivity(intent)
+        return;
     }
 
 }
