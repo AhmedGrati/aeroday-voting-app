@@ -3,4 +3,6 @@
     <color name="colorPrimary">#293241</color>
     <color name="colorPrimaryDark">#293241</color>
     <color name="colorAccent">#293241</color>
+    <color name="confirm_button_color">#28A745</color>
+    <color name="cancel_button_color">#DC3545</color>
 </resources>

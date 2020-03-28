@@ -28,5 +28,10 @@ public class Voter {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Voter{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

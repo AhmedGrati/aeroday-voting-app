@@ -18,9 +18,10 @@ import com.example.myapplication.Room.Model.Competition;
 import com.example.myapplication.Room.Model.Voter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
-@androidx.room.Database(entities = {Competition.class , AirshowParticipant.class , Voter.class}, version = 8, exportSchema = false)
+@androidx.room.Database(entities = {Competition.class , AirshowParticipant.class , Voter.class}, version = 11, exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
@@ -56,9 +57,10 @@ public abstract class Database extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            airshowParticipantDao.insertAirshowParticipant(new AirshowParticipant(0,"Avatar 1","detail 1","name 1" , 0 , 0 , new ArrayList<Voter>()));
-            airshowParticipantDao.insertAirshowParticipant(new AirshowParticipant(0,"Avatar 2","detail 2","name 2" , 0 , 0 ,new ArrayList<Voter>()));
-            airshowParticipantDao.insertAirshowParticipant(new AirshowParticipant(0,"Avatar 3","detail 3","name 3" , 0 , 0 , new ArrayList<Voter>()));
+            voterDao.insertAllVoters(Arrays.asList(new Voter("0") , new Voter("1")));
+            airshowParticipantDao.insertAirshowParticipant(new AirshowParticipant(0,"Avatar 1","detail 1","name 1" , 0 , "0" , new ArrayList<Voter>()));
+            airshowParticipantDao.insertAirshowParticipant(new AirshowParticipant(1,"Avatar 2","detail 2","name 2" , 0 , "0" ,new ArrayList<Voter>()));
+            airshowParticipantDao.insertAirshowParticipant(new AirshowParticipant(2,"Avatar 3","detail 3","name 3" , 0 , "0" , new ArrayList<Voter>()));
             competitionDao.insertCompetition(new Competition(false,"Competition 1","Tunis","00:00" , 0));
             competitionDao.insertCompetition(new Competition(false,"Competition 2","Tunis","00:00" ,1));
             competitionDao.insertCompetition(new Competition(false,"Competition 3","Tunis","00:00" , 2));

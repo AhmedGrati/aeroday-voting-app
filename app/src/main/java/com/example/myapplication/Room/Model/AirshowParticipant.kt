@@ -5,27 +5,25 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "airshow_participant_table")
-public class AirshowParticipant{
+data class AirshowParticipant(
         @PrimaryKey
-        var id : Int = 0
-        var avatar : String = ""
-        var detail : String = ""
-        var name : String = ""
-        var score : Int = 0
-        var votes : Int = 0
+        var id : Int = -1,
+        var avatar : String = "",
+        var detail : String = "",
+        var name : String = "",
+        var score : Int = 0,
+        var votes : String = "0",
         var voters : ArrayList<Voter> = ArrayList<Voter>()
-
-
-        @Ignore
-        constructor(){
-        }
-
-        constructor(id:Int , avatar : String , detail : String , name : String , score : Int , votes:Int , voters : ArrayList<Voter>){
-                this.id = id;
-                this.avatar = avatar
-                this.detail = detail
-                this.name = name
-                this.score = score
-                this.voters = voters
+){
+        override fun toString() : String{
+                return ("AirshowParticipan {" +
+                        "id : $id , " +
+                        "avatar : $avatar , " +
+                        "detail : $detail , " +
+                        "name : $name , " +
+                        "score : $score , " +
+                        "votes : $votes , " +
+                        "voters : $voters , " +
+                        "}")
         }
 }

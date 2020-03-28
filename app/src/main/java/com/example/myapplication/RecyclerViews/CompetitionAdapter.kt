@@ -36,7 +36,6 @@ class CompetitionAdapter(competitionListener: OnCompetitionListener) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: CompetitionHolder, position: Int) {
-        var  backgroundImage : String
         var currentCompetition = competitions.get(position)
         holder.textViewName.text = currentCompetition.name
         holder.textViewTime.text = "Time : "+currentCompetition.time

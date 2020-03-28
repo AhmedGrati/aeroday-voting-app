@@ -3,6 +3,7 @@ package com.example.myapplication.Room.Dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.myapplication.Room.Model.AirshowParticipant
 import io.reactivex.Completable
 
@@ -22,5 +23,8 @@ interface AirshowParticipantDao {
 
     @Query("DELETE FROM airshow_participant_table")
     fun deleteAllAirshowParticipants() : Completable
+
+    @Update
+    fun updateAirshowParticipant(airshowParticipants: AirshowParticipant?) : Completable
 
 }

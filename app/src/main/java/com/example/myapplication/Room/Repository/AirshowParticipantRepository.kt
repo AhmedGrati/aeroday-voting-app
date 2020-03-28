@@ -3,11 +3,15 @@ package com.example.myapplication.Room.Repository
 import android.util.Log
 import com.example.myapplication.Room.Dao.AirshowParticipantDao
 import com.example.myapplication.Room.Model.AirshowParticipant
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.util.Listener
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 class AirshowParticipantRepository(private val airshowParticipantDao: AirshowParticipantDao , private val firebaseFirestore: FirebaseFirestore) {
 
@@ -31,7 +35,7 @@ class AirshowParticipantRepository(private val airshowParticipantDao: AirshowPar
 
                                         val d = documentSnapshot.toObject<AirshowParticipant>()!!
 
-                                        Log.i("wadhah", d.toString())
+                                        Log.d("wadhah", "$d")
                                         //    d.id = documentSnapshot.id.toInt()
                                         return@map d
 
@@ -51,6 +55,19 @@ class AirshowParticipantRepository(private val airshowParticipantDao: AirshowPar
                                 }
                     }
                 }
+    }
+
+    fun updateAirshowParticipant(airshowParticipant: AirshowParticipant): Task<Void> {
+        Log.d("mydocumentis : ","${airshowParticipant.id.toString()}")
+        val addOnSuccessListener = firebaseFirestore.collection("AirshowParticipant")
+            .document(airshowParticipant.id.toString())
+            .set(airshowParticipant)
+            .addOnSuccessListener {
+                return@addOnSuccessListener
+            }.addOnFailureListener {
+                return@addOnFailureListener
+            }
+        return addOnSuccessListener
     }
 
 }
