@@ -62,6 +62,7 @@ class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
 
         airshowParticipantViewModel.all.subscribe { airshowParticipants ->
             this.allParticipants = airshowParticipants as ArrayList<AirshowParticipant>
+            Log.d("allparticipants" ,"${this.allParticipants}")
         }
         for(i in 0..this.allParticipants.size-1){
             this.voterViewModel.insertAllVoters((this.allParticipants.get(i).voters)).subscribe {
