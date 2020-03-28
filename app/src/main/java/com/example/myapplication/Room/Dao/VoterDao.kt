@@ -7,9 +7,6 @@ import androidx.room.Query
 import com.example.myapplication.Room.Model.Voter
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Maybe
-import io.reactivex.Single
-import java.util.*
 
 @Dao
 interface VoterDao {
@@ -24,7 +21,7 @@ interface VoterDao {
     fun deleteAllVoters() : Completable
 
     @Query(value = "SELECT * FROM voter_table where id LIKE :voter_id ")
-    fun findVoterById(voter_id : String) : Flowable<Optional<Voter>>
+    fun findVoterById(voter_id: String): Flowable<List<Voter>>
 
     @Query("DELETE from voter_table")
     fun deleteAll() : Completable

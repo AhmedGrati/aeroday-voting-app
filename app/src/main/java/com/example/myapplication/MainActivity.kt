@@ -73,32 +73,38 @@ class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
     @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("CheckResult")
     override fun onCompetitionClick(position: Int) : Unit{
-        var exitfunction=false;
-        val allCompetitions : ArrayList<Competition> = CompetitionAdapter.competitions
+        var exitfunction = false
+        val allCompetitions: ArrayList<Competition> = CompetitionAdapter.competitions
         var competition = allCompetitions.get(position)
         Log.d("thecompetitionis : ", "$competition")
         if ((competition.name.toUpperCase().trim() == "AIRSHOW") && (competition.active==true)) {
-            var uniqueId : String = Settings.Secure.getString(this.contentResolver , Settings.Secure.ANDROID_ID)
-            Log.d("hani hna","hani hna")
-            this.voterViewModel.findVoterById(uniqueId.toString()).subscribe {
-                voter ->
-                    Log.d("voterexists","${voter.isPresent}")
-                    exitfunction = voter.isPresent
-                    if(!exitfunction){
+            var uniqueId: String =
+                Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
+            Log.d("hani hna", "hani hna")
+            this.voterViewModel.findVoterById(uniqueId)
+                .take(1)
+                .subscribe { voter ->
+                    Log.i("wadhahXXX", voter.toString())
+
+
+                    Log.d("voterexists", "${voter}")
+                    exitfunction = voter.size == 1
+                    if (!exitfunction) {
                         openIntent()
-                        Log.d("voterexists","${voter.isPresent}")
-                    }else{
-                        Toast.makeText(this,"You already Voted Sorry !!" , Toast.LENGTH_SHORT).show()
+                        Log.d("voterexists", "${voter}")
+                    } else {
+                        Toast.makeText(this, "You already Voted Sorry !!", Toast.LENGTH_SHORT)
+                            .show()
 
                     }
-            }
+                }
 
         }
     }
     fun openIntent(){
         var intent = Intent(this, VotingActivity::class.java)
         startActivity(intent)
-        return;
+        return
     }
 
 }
