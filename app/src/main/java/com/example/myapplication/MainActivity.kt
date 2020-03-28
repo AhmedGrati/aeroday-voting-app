@@ -1,17 +1,12 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.widget.ScrollView
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RecyclerViews.CompetitionAdapter
 import com.example.myapplication.RecyclerViews.CompetitionAdapter.OnCompetitionListener
 import com.example.myapplication.Room.Model.AirshowParticipant
@@ -19,12 +14,9 @@ import com.example.myapplication.Room.Model.Competition
 import com.example.myapplication.Room.ViewModel.AirshowParticipantViewModel
 import com.example.myapplication.Room.ViewModel.CompetitionViewModel
 import com.example.myapplication.Room.ViewModel.VoterViewModel
-
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.Duration
 import java.time.LocalDateTime
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
@@ -62,15 +54,29 @@ class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
 
         airshowParticipantViewModel.all.subscribe { airshowParticipants ->
             this.allParticipants = airshowParticipants as ArrayList<AirshowParticipant>
-        }
-        for(i in 0..this.allParticipants.size-1){
-            this.voterViewModel.insertAllVoters((this.allParticipants.get(i).voters)).subscribe {
-                Log.d("insertedVoter","insertedVoter")
+            this.allParticipants.forEach {
+                this.voterViewModel.insertAllVoters((it.voters)).subscribe {
+                    Log.d("insertedVoter", "insertedVoter")
+                }
             }
         }
-        voterViewModel.allVoters.subscribe {
-            voters ->
-                Log.d("allVoters : ","$voters")
+
+
+//        this.allParticipants.forEach{
+//            Log.i("XXXXX" , it.toString())
+//        }
+//
+//        for(i in 0..this.allParticipants.size-1){
+//
+//            Log.d("insertedVoter","insertedVoter")
+//
+//            this.voterViewModel.insertAllVoters((this.allParticipants.get(i).voters)).subscribe {
+//                Log.d("insertedVoter","insertedVoter")
+//            }
+//        }
+
+        voterViewModel.allVoters.subscribe { voters ->
+            Log.d("allVoters : ", "$voters")
         }
 
     }
