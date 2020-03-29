@@ -34,7 +34,7 @@
             android:text="Airshow Voting"
             android:textColor="@android:color/white"
             android:fontFamily="@font/montserrat"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

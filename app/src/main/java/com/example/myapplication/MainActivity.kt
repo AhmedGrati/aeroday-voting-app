@@ -88,8 +88,7 @@ class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
 
 
                     Log.d("voterexists", "${voter}")
-                    exitfunction = voter.size == 1
-                    if (!exitfunction) {
+                    if (voter.size != 1) {
                         openIntent()
                         Log.d("voterexists", "${voter}")
                     } else {
