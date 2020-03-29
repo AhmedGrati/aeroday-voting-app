@@ -56,7 +56,14 @@ class CompetitionAdapter(competitionListener: OnCompetitionListener) : RecyclerV
 
             "AEROMODÉLISME"->holder.backgroundImage.setImageResource(R.drawable.aeromodelisme)
 
-            "AIRSHOW"->holder.backgroundImage.setImageResource(R.drawable.airshow)
+            "AIRSHOW"->{
+                holder.backgroundImage.setImageResource(R.drawable.airshow)
+                if(currentCompetition.active == true){
+                    holder.descriptionTextView.text = "Click to go to vote !"
+                }else{
+                    holder.descriptionTextView.text = ""
+                }
+            }
 
             "CAO"->holder.backgroundImage.setImageResource(R.drawable.cao)
 
@@ -67,7 +74,7 @@ class CompetitionAdapter(competitionListener: OnCompetitionListener) : RecyclerV
             "NOVICES"-> {
                 println("hellonovices")
                 holder.backgroundImage.setImageResource(R.drawable.novices)}
-            else -> println("laasba" + currentCompetition.name.toUpperCase().trim())
+
         }
     }
 
@@ -86,9 +93,11 @@ class CompetitionAdapter(competitionListener: OnCompetitionListener) : RecyclerV
         lateinit var textViewName : TextView
         lateinit var textViewPlace : TextView
         lateinit var textViewTime : TextView
+        lateinit var descriptionTextView : TextView
         lateinit var backgroundImage : ImageView
         init {
             textViewName = itemView.findViewById(R.id.challenge_name_text_view)
+            descriptionTextView = itemView.findViewById(R.id.description_text_view)
             textViewResponseIsActive = itemView.findViewById(R.id.response_is_active_text_view)
             textViewPlace = itemView.findViewById(R.id.place_name_text_view)
             textViewTime = itemView.findViewById(R.id.time_text_view)
