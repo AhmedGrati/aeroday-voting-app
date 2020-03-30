@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_weight="2"
         android:layout_width="match_parent"
-        android:background="#D1AE4A"
+        android:background="#215CAF"
         android:layout_height="100dp">
 
         <ImageView
@@ -28,7 +28,7 @@
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/aerodaylogo"></ImageView>
+            android:src="@drawable/aeroday_logo_2"></ImageView>
 
         <TextView
             app:layout_constraintEnd_toEndOf="@id/aeroday_logo"
