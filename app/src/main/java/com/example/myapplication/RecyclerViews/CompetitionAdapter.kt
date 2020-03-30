@@ -50,11 +50,11 @@ class CompetitionAdapter(competitionListener: OnCompetitionListener) : RecyclerV
         println("thenameis : " + holder.textViewName.text.toString().toUpperCase())
 
         when(currentCompetition.name.toUpperCase().trim()){
-            "AEROCHALLENGE"->holder.backgroundImage.setImageResource(R.drawable.aerochallenges)
+            "AÉROCHALLENGE"->holder.backgroundImage.setImageResource(R.drawable.aerochallenges)
 
-            "AEROENTREPRENEUR"->holder.backgroundImage.setImageResource(R.drawable.aeroentrepreneur)
+            "AÉROENTREPRENEUR"->holder.backgroundImage.setImageResource(R.drawable.aeroentrepreneur)
 
-            "AEROMODÉLISME"->holder.backgroundImage.setImageResource(R.drawable.aeromodelisme)
+            "AÉROMODÉLISME"->holder.backgroundImage.setImageResource(R.drawable.aeromodelisme)
 
             "AIRSHOW"->{
                 holder.backgroundImage.setImageResource(R.drawable.airshow)
@@ -65,13 +65,13 @@ class CompetitionAdapter(competitionListener: OnCompetitionListener) : RecyclerV
                 }
             }
 
-            "CAO"->holder.backgroundImage.setImageResource(R.drawable.cao)
+            "CHALLENGE CAO"->holder.backgroundImage.setImageResource(R.drawable.cao)
 
-            "EXPOSITIONS AERONOTIQUES"->holder.backgroundImage.setImageResource(R.drawable.expo_aeronautiques)
+            "EXPOSITIONS AÉRONAUTIQUES"->holder.backgroundImage.setImageResource(R.drawable.expo_aeronautiques)
 
-            "EXPOSITIONS AEROSPACES"->holder.backgroundImage.setImageResource(R.drawable.expo_aerospace)
+            "EXPOSITIONS AÉROSPACES"->holder.backgroundImage.setImageResource(R.drawable.expo_aerospace)
 
-            "NOVICES"-> {
+            "ATELIERS NOVICES"-> {
                 println("hellonovices")
                 holder.backgroundImage.setImageResource(R.drawable.novices)}
 

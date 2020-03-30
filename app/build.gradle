@@ -14,7 +14,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.example.myapplication"
-        minSdkVersion 21
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -94,5 +94,7 @@ dependencies {
     //Rounded Image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //animations
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
 }

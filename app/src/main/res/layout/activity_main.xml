@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:textSize="17sp"
-            android:text="hello"
+            android:text="Stay Tuned !"
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:textAllCaps="false"

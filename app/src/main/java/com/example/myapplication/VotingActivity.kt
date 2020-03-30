@@ -54,7 +54,9 @@ class VotingActivity : AppCompatActivity() {
             Log.d("lastElementChecked : ","${AirshowVotingAdapter.lastElementChecked}")
             var voter = Voter(uniqueId);
             airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked).voters.add(voter)
-            airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked).votes += 1
+            var nbrOfVotes : Int = airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked).votes.toInt() + 1
+            Log.d("nbrOfVotes : ",nbrOfVotes.toString())
+            airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked).votes = nbrOfVotes.toString()
             airshowParticipantViewModel.updateAirshowParticipant(airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked))
                 .addOnSuccessListener {
                     Toast.makeText(this,"Voted Successfully !" , Toast.LENGTH_LONG).show()

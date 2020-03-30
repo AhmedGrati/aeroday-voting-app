@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#293241</color>
+    <color name="colorPrimary">#D1AE4A</color>
     <color name="colorPrimaryDark">#293241</color>
     <color name="colorAccent">#293241</color>
+    <color name="loadingPageColor">#3199DA</color>
+    <color name="VotingPageColor">#696969</color>
     <color name="confirm_button_color">#28A745</color>
     <color name="cancel_button_color">#DC3545</color>
 </resources>

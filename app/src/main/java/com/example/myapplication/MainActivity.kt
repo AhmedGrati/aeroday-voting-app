@@ -18,25 +18,32 @@ import com.example.myapplication.Room.Model.Competition
 import com.example.myapplication.Room.ViewModel.AirshowParticipantViewModel
 import com.example.myapplication.Room.ViewModel.CompetitionViewModel
 import com.example.myapplication.Room.ViewModel.VoterViewModel
+//import jdk.nashorn.internal.runtime.PropertyMap.diff
 import kotlinx.android.synthetic.main.activity_main.*
+import java.sql.Date
 import java.time.Duration
 import java.time.LocalDateTime
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
+class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
     lateinit var competitionViewModel: CompetitionViewModel
     var allParticipants=ArrayList<AirshowParticipant>()
     val voterViewModel : VoterViewModel by viewModels()
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val date : LocalDateTime = LocalDateTime.now()
+            val aerodayDate : LocalDateTime = LocalDateTime.of(2020,4,12,0,0,0)
+            val differenceBetweenTwoDays = Duration.between(date,aerodayDate).toDays()
+            countDown_text.text = "J-$differenceBetweenTwoDays. Stay Tuned !"
+        }
 
-        val date : LocalDateTime = LocalDateTime.now()
-        val aerodayDate : LocalDateTime = LocalDateTime.of(2020,4,12,0,0,0)
-        val differenceBetweenTwoDays = Duration.between(date,aerodayDate).toDays()
-        countDown_text.text = "J-$differenceBetweenTwoDays. Stay Tuned !"
 
         //recyclerview settings
         challenges_recycler_view.layoutManager = LinearLayoutManager(this)
@@ -70,7 +77,6 @@ class MainActivity  :  AppCompatActivity() , OnCompetitionListener{
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("CheckResult")
     override fun onCompetitionClick(position: Int) : Unit{
         var exitfunction = false
