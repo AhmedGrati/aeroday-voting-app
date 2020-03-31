@@ -25,20 +25,17 @@ import java.util.*
 import java.util.zip.Inflater
 import kotlin.collections.ArrayList
 
-class AirshowVotingAdapter : RecyclerView.Adapter<AirshowVotingAdapter.AirshowVotingHolder>{
+class AirshowVotingAdapter : RecyclerView.Adapter<AirshowVotingAdapter.AirshowVotingHolder>(){
 
 
     private var airshowParticipants = ArrayList<AirshowParticipant>()
     private var votingActivity =VotingActivity()
-    private lateinit var  context : Context
     companion object {
         var lastElementChecked = -1
         var radioButtons = ArrayList<RadioButton>()
 
     }
-    constructor(context: Context) : super(){
-        this.context = context
-    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AirshowVotingHolder {
         var itemView = LayoutInflater.from(parent.context).inflate(R.layout.voting_item , parent , false)
         return AirshowVotingHolder(itemView)

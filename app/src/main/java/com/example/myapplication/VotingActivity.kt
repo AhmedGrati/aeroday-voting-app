@@ -36,7 +36,7 @@ class VotingActivity : AppCompatActivity() {
         voting_recycler_view.layoutManager = LinearLayoutManager(this)
         voting_recycler_view.setHasFixedSize(true)
 
-        val airshowVotingAdapter  = AirshowVotingAdapter(this)
+        val airshowVotingAdapter  = AirshowVotingAdapter()
         voting_recycler_view.adapter = airshowVotingAdapter
         val airshowParticipantViewModel : AirshowParticipantViewModel by viewModels()
 
