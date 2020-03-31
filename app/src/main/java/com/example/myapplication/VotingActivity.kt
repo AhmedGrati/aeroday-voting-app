@@ -57,14 +57,17 @@ class VotingActivity : AppCompatActivity() {
             var nbrOfVotes : Int = airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked).votes.toInt() + 1
             Log.d("nbrOfVotes : ",nbrOfVotes.toString())
             airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked).votes = nbrOfVotes.toString()
+            Log.d("idofCollection : ","${AirshowVotingAdapter.lastElementChecked}")
             airshowParticipantViewModel.updateAirshowParticipant(airshowVotingAdapter.getAirshowParticipants().get(AirshowVotingAdapter.lastElementChecked))
                 .addOnSuccessListener {
                     Toast.makeText(this,"Voted Successfully !" , Toast.LENGTH_LONG).show()
+                    LoadingActivity.voterExistence = true
                     var intent = Intent(this,MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
                 .addOnFailureListener {
+                    Log.d("helloerreur : ","${it.message}")
                     Toast.makeText(this,"${it.message.toString()}",Toast.LENGTH_LONG).show()
                 }
             Log.d("newone : ","${airshowVotingAdapter.getAirshowParticipants()}")

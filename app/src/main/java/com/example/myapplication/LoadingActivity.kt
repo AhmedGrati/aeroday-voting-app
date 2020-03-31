@@ -3,10 +3,18 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.Room.ViewModel.VoterViewModel
 
 
 class LoadingActivity : AppCompatActivity() {
+    companion object{
+        var voterExistence : Boolean = false;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,5 +31,20 @@ class LoadingActivity : AppCompatActivity() {
             //This 'finish()' is for exiting the app when back button pressed from Home page which is ActivityHome
             finish()
         }, SPLASH_TIME)
+        val voterViewModel : VoterViewModel by viewModels()
+
+        var uniqueId: String =
+            Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
+        voterViewModel.findVoterById(uniqueId)
+            .take(1)
+            .subscribe { voter ->
+                Log.d("voterexists", "${voter}")
+                if (voter.size != 1) {
+                    voterExistence = false
+                    Log.d("voterexists", "${voter}")
+                } else {
+                    voterExistence = true
+                }
+            }
     }
 }

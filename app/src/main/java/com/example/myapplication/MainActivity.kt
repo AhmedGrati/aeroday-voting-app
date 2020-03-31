@@ -64,7 +64,7 @@ class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
 
         airshowParticipantViewModel.all.subscribe { airshowParticipants ->
             this.allParticipants = airshowParticipants as ArrayList<AirshowParticipant>
-            Log.d("allParticipants : ","$allParticipants")
+            Log.d("allParticipants : ","${allParticipants}")
             this.allParticipants.forEach {
                 this.voterViewModel.insertAllVoters((it.voters)).subscribe {
                     Log.d("insertedVoter", "insertedVoter")
@@ -84,32 +84,16 @@ class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
         var competition = allCompetitions.get(position)
         Log.d("thecompetitionis : ", "$competition")
         if ((competition.name.toUpperCase().trim() == "AIRSHOW") && (competition.active==true)) {
-            var uniqueId: String =
-                Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
+
             Log.d("hani hna", "hani hna")
-            this.voterViewModel.findVoterById(uniqueId)
-                .take(1)
-                .subscribe { voter ->
-                    Log.i("wadhahXXX", voter.toString())
-
-
-                    Log.d("voterexists", "${voter}")
-                    if (voter.size != 1) {
-                        openIntent()
-                        Log.d("voterexists", "${voter}")
-                    } else {
-                        Toast.makeText(this, "You already Voted Sorry !!", Toast.LENGTH_SHORT)
-                            .show()
-
-                    }
-                }
+            if(LoadingActivity.voterExistence == true){
+                Toast.makeText(this, "You already Voted Sorry !!", Toast.LENGTH_SHORT)
+                    .show()
+            }else{
+                var intent = Intent(this, VotingActivity::class.java)
+                startActivity(intent)
+            }
 
         }
     }
-    fun openIntent(){
-        var intent = Intent(this, VotingActivity::class.java)
-        startActivity(intent)
-        return
-    }
-
 }
