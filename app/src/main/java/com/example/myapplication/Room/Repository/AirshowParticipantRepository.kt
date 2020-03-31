@@ -1,5 +1,8 @@
 package com.example.myapplication.Room.Repository
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.util.Log
 import com.example.myapplication.Room.Dao.AirshowParticipantDao
 import com.example.myapplication.Room.Model.AirshowParticipant
@@ -8,12 +11,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.firestore.util.Listener
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import java.net.URL
 import java.util.*
 
-class AirshowParticipantRepository(private val airshowParticipantDao: AirshowParticipantDao , private val firebaseFirestore: FirebaseFirestore) {
+class AirshowParticipantRepository(private val airshowParticipantDao: AirshowParticipantDao , private val firebaseFirestore: FirebaseFirestore){
 
 
     fun getAll(): Flowable<List<AirshowParticipant>> {
@@ -70,4 +76,16 @@ class AirshowParticipantRepository(private val airshowParticipantDao: AirshowPar
         return addOnSuccessListener
     }
 
+    /*fun getAirshowParticipantImage(avatar: String?) : Bitmap?{
+        if(avatar!=""){
+            var url = URL("https://scontent.ftun11-1.fna.fbcdn.net/v/t1.0-9/36589673_2068603200018117_192489786982793216_n.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=-wF2CL4269oAX9t3qxQ&_nc_ht=scontent.ftun11-1.fna&oh=282ef16c9df53ed1e66d158f29994279&oe=5EA8075C")
+            var bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            return bitmap
+        }
+        return null
+    }
+
+    override fun doInBackground(vararg params: String?): Bitmap? {
+        return getAirshowParticipantImage(params.get(0))
+    }*/
 }

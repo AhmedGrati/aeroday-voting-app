@@ -1,20 +1,19 @@
 package com.example.myapplication.Room.ViewModel;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.myapplication.Room.Database.Database;
 import com.example.myapplication.Room.Model.AirshowParticipant;
-import com.example.myapplication.Room.Model.Competition;
 import com.example.myapplication.Room.Repository.AirshowParticipantRepository;
-import com.example.myapplication.Room.Repository.CompetitionRepository;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
-import java.util.Optional;
 
 import io.reactivex.Flowable;
 
@@ -36,5 +35,7 @@ public class AirshowParticipantViewModel extends AndroidViewModel {
        return airshowParticipantRepository.updateAirshowParticipant(airshowParticipant);
     }
 
-
+    /*public AsyncTask<String, String, Bitmap> getAirshowParticipantImage(String avatar){
+        return airshowParticipantRepository.execute(avatar);
+    }*/
 }

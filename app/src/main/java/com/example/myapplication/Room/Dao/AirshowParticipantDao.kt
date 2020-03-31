@@ -27,4 +27,5 @@ interface AirshowParticipantDao {
     @Update
     fun updateAirshowParticipant(airshowParticipants: AirshowParticipant?) : Completable
 
+    //fun getAirshowParticipantImage() : Completable
 }

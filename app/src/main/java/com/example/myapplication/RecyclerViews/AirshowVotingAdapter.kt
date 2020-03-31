@@ -11,22 +11,33 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.Room.Model.AirshowParticipant
 import com.example.myapplication.Room.Model.Competition
+import com.example.myapplication.Room.ViewModel.AirshowParticipantViewModel
+import com.example.myapplication.VotingActivity
+import com.squareup.picasso.Picasso
 import java.net.URL
 import java.util.*
 import java.util.zip.Inflater
 import kotlin.collections.ArrayList
 
-class AirshowVotingAdapter : RecyclerView.Adapter<AirshowVotingAdapter.AirshowVotingHolder>(){
+class AirshowVotingAdapter : RecyclerView.Adapter<AirshowVotingAdapter.AirshowVotingHolder>{
 
 
     private var airshowParticipants = ArrayList<AirshowParticipant>()
+    private var votingActivity =VotingActivity()
+    private lateinit var  context : Context
     companion object {
         var lastElementChecked = -1
         var radioButtons = ArrayList<RadioButton>()
+
+    }
+    constructor(context: Context) : super(){
+        this.context = context
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AirshowVotingHolder {
         var itemView = LayoutInflater.from(parent.context).inflate(R.layout.voting_item , parent , false)
@@ -44,11 +55,12 @@ class AirshowVotingAdapter : RecyclerView.Adapter<AirshowVotingAdapter.AirshowVo
         holder.airshowParticipantName.text = currentAirshowParticipant.name
         Log.d("lastposition : ","$lastElementChecked")
         radioButtons.add(holder.radioButton)
-        /*if(currentAirshowParticipant.avatar!=""){
-            var url = URL(currentAirshowParticipant.avatar)
-            var bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-            holder.airshowParticipantAvatar.setImageBitmap(bitmap)
-        }*/
+
+        if(currentAirshowParticipant.avatar!=""){
+            Picasso.get()
+                .load("https://homepages.cae.wisc.edu/~ece533/images/airplane.png")
+                .into(holder.airshowParticipantAvatar)
+        }
     }
 
     fun setAirshowParticipants(airshowParticipant : ArrayList<AirshowParticipant>){

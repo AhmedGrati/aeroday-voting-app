@@ -97,4 +97,8 @@ dependencies {
     //animations
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
+    //Image from url
+    implementation "com.squareup.picasso:picasso:2.71828"
+
+
 }

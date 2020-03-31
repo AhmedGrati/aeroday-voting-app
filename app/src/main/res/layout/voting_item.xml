@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginRight="8dp"
@@ -23,17 +23,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/airshow"
             app:civ_border_width="2dp"
-            app:civ_border_color="#FFFFFF"/>
+            app:civ_border_color="#67686B"/>
 
         <TextView
             android:id="@+id/airshow_participant_name_text_view"
             android:textSize="30sp"
             android:textFontWeight="@android:integer/config_mediumAnimTime"
-            android:textColor="@android:color/white"
+            android:textColor="#67686B"
             android:layout_width="wrap_content"
             android:fontFamily="@font/montserrat"
             android:layout_height="wrap_content"

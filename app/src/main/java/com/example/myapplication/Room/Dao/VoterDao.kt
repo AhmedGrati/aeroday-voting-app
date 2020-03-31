@@ -25,4 +25,5 @@ interface VoterDao {
 
     @Query("DELETE from voter_table")
     fun deleteAll() : Completable
+
 }

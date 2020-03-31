@@ -50,59 +50,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="#E1E2E9"
         app:layout_constraintTop_toBottomOf="@id/header_voting">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/voting_recycler_view"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/gradient_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/voting_buttons"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             tools:listitem="@layout/voting_item"/>
-        <LinearLayout
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:weightSum="4"
-            android:layout_height="75dp">
-            <Button
-                android:id="@+id/cancel_button"
-                android:layout_width="200dp"
-                android:layout_height="75dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:text="Cancel"
-                android:textSize="30sp"
-                android:textAllCaps="false"
-                android:alpha="0.45"
-                android:layout_weight="1"
-                android:textColor="@android:color/white"
-                android:fontFamily="@font/montserrat"
-                android:background="@color/cancel_button_color"/>
-            <Button
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:id="@+id/confirm_button"
-                android:layout_width="210dp"
-                android:layout_height="75dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/voting_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cancel_button"
-                android:text="Confirm"
-                android:fontFamily="@font/montserrat"
-                android:textSize="30sp"
-                android:alpha="0.45"
-                android:textColor="@android:color/white"
-                android:background="@color/confirm_button_color">
-            </Button>
-        </LinearLayout>
+                app:layout_constraintStart_toStartOf="parent"
 
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp"
+                >
+                <ImageView
+                    android:id="@+id/cancel_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:src="@drawable/cancel"
+                    app:layout_constraintEnd_toStartOf="@+id/confirm_button"
+                    />
+                <ImageView
 
+                    android:id="@+id/confirm_button"
+                    android:src="@drawable/check"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
 
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cancel_button"
+                    android:textColor="@android:color/white"
+                    >
+                </ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

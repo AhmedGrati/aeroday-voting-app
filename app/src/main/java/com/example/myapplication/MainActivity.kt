@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RecyclerViews.CompetitionAdapter
 import com.example.myapplication.RecyclerViews.CompetitionAdapter.OnCompetitionListener
 import com.example.myapplication.Room.Model.AirshowParticipant
@@ -29,8 +31,8 @@ import kotlin.collections.ArrayList
 
 class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
     lateinit var competitionViewModel: CompetitionViewModel
-    var allParticipants=ArrayList<AirshowParticipant>()
-    val voterViewModel : VoterViewModel by viewModels()
+
+    public val voterViewModel : VoterViewModel by viewModels()
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +48,7 @@ class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
 
 
         //recyclerview settings
-        challenges_recycler_view.layoutManager = LinearLayoutManager(this)
+        challenges_recycler_view.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         challenges_recycler_view.setHasFixedSize(true)
 
         val competitionAdapter : CompetitionAdapter = CompetitionAdapter(this)
@@ -62,15 +64,7 @@ class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
             Log.d("mymessage : ","${competitionAdapter.getCompetitions()}")
         }
 
-        airshowParticipantViewModel.all.subscribe { airshowParticipants ->
-            this.allParticipants = airshowParticipants as ArrayList<AirshowParticipant>
-            Log.d("allParticipants : ","${allParticipants}")
-            this.allParticipants.forEach {
-                this.voterViewModel.insertAllVoters((it.voters)).subscribe {
-                    Log.d("insertedVoter", "insertedVoter")
-                }
-            }
-        }
+
         voterViewModel.allVoters.subscribe { voters ->
             Log.d("allVoters : ", "$voters")
         }
@@ -82,6 +76,7 @@ class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
         var exitfunction = false
         val allCompetitions: ArrayList<Competition> = CompetitionAdapter.competitions
         var competition = allCompetitions.get(position)
+
         Log.d("thecompetitionis : ", "$competition")
         if ((competition.name.toUpperCase().trim() == "AIRSHOW") && (competition.active==true)) {
 
@@ -96,4 +91,6 @@ class MainActivity  :  AppCompatActivity(), OnCompetitionListener{
 
         }
     }
+
+
 }
