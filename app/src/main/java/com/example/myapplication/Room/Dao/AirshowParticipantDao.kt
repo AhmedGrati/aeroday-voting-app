@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.myapplication.Room.Model.AirshowParticipant
 import io.reactivex.Completable
+import io.reactivex.CompletableSource
 
 import io.reactivex.Flowable
 
@@ -26,6 +27,9 @@ interface AirshowParticipantDao {
 
     @Update
     fun updateAirshowParticipant(airshowParticipants: AirshowParticipant?) : Completable
+
+
+
 
     //fun getAirshowParticipantImage() : Completable
 }

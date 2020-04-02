@@ -47,7 +47,6 @@ class LoadingActivity : AppCompatActivity() {
         var uniqueId: String =
             Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
         voterViewModel.findVoterById(uniqueId)
-            .take(1)
             .subscribe { voter ->
                 Log.d("voterexists", "${voter}")
                 if (voter.size != 1) {
